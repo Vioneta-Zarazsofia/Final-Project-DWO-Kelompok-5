@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<Schema name="uasdwaw">
+<!--
+  == This software is subject to the terms of the Eclipse Public License v1.0
+  == Agreement, available at the following URL:
+  == http://www.eclipse.org/legal/epl-v10.html.
+  == You must accept the terms of that agreement to use this software.
+  ==
+  == Copyright (C) 2000-2005 Julian Hyde
+  == Copyright (C) 2005-2011 Pentaho and others
+  == All Rights Reserved.
+  -->
+
+<!-- Shared dimensions -->
+
+  
+
+<!-- Sales -->
+<Cube name="jual" defaultMeasure="orderQTY">
+  <!-- Use annotations to provide translations of this cube's caption and
+       description into German and French. Use of annotations in this manner is
+       experimental and unsupported; just for testing right now. -->
+  
+  <Table name="fac_sales"/>
+
+    
+  <Dimension name="customer" foreignKey ="customerID">
+      <Hierarchy hasAll="true" allMemberName="All customers" primaryKey ="customerID">
+      <Table name="customer"/>
+      <Level name="accountnumber" column="accountnumber"/>
+      <Level name="customertype" column="customertype"/>
+
+      </Hierarchy>
+      
+  </Dimension>
+
+ 
+  <Dimension name="Time" foreignKey="time_id">
+    <Hierarchy hasAll="true" allMemberName="All Times" primaryKey="time_id">
+      <Table name="time" />
+      <Level name="Year" column="tahun" type="Numeric" uniqueMembers="true"
+          levelType="TimeYears"/>
+      <Level name="Month" column="bulan" uniqueMembers="false" type="Numeric"
+          levelType="TimeMonths"/>
+      <Level name="Date" column="tanggal" uniqueMembers="false" type="Numeric"
+          levelType="TimeDays"/>
+    </Hierarchy>
+   
+  </Dimension>
+
+  <Dimension name="shipmethod" foreignKey = "shipID">
+    <Hierarchy hasAll="true" allMemberName="All ships" primaryKey ="shipID">
+      <Table name="shipmethod" />
+      <Level name="name" column="name"/>
+      <Level name="shipbase" column="shipbase" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="address" foreignKey="addressID">
+    
+    <Hierarchy  hasAll  ="true" allMemberName="All addresses" primaryKey  = "addressID">
+        <Table name="address"/>
+        <Level name="address_line" column="address_line"/>
+        <Level name="city" column="city"/>
+    </Hierarchy>
+  </Dimension>
+
+    <Dimension name="product" foreignKey="productID">
+    
+    <Hierarchy  hasAll  ="true" allMemberName="All products" primaryKey  = "productID">
+        <Table name="product"/>
+        <Level name="product_name" column="product_name"/>
+        <Level name="unit_price" column="unit_price"/>
+        <Level name="size" column="size"/>
+        <Level name="weight" column="weight"/>
+    </Hierarchy>
+  </Dimension>
+    
+  
+
+  <Measure name="orderQTY" column="orderQTY" aggregator="sum"
+      formatString="Standard"/>
+  <Measure name="sub_total" column="sub_total" aggregator="sum"
+      formatString="Standard"/>
+  
+  
+  
+</Cube>
+
+
+
+</Schema>

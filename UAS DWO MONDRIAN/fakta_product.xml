@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<Schema name="uasdwaw">
+<!--
+  == This software is subject to the terms of the Eclipse Public License v1.0
+  == Agreement, available at the following URL:
+  == http://www.eclipse.org/legal/epl-v10.html.
+  == You must accept the terms of that agreement to use this software.
+  ==
+  == Copyright (C) 2000-2005 Julian Hyde
+  == Copyright (C) 2005-2011 Pentaho and others
+  == All Rights Reserved.
+  -->
+
+<!-- Shared dimensions -->
+
+  
+
+<!-- Sales -->
+<Cube name="produk" defaultMeasure="sub_total">
+  <!-- Use annotations to provide translations of this cube's caption and
+       description into German and French. Use of annotations in this manner is
+       experimental and unsupported; just for testing right now. -->
+  
+  <Table name="fac_product"/>
+
+    
+  <Dimension name="product" foreignKey="productID">
+    
+    <Hierarchy  hasAll  ="true" allMemberName="All products" primaryKey  = "productID">
+        <Table name="product"/>
+        <Level name="product_name" column="product_name"/>
+        <Level name="unit_price" column="unit_price"/>
+        <Level name="size" column="size"/>
+        <Level name="weight" column="weight"/>
+    </Hierarchy>
+  </Dimension>
+
+ 
+  <Dimension name="Time" foreignKey="time_id">
+    <Hierarchy hasAll="true" allMemberName="All Times" primaryKey="time_id">
+      <Table name="time" />
+      <Level name="Year" column="tahun" type="Numeric" uniqueMembers="true"
+          levelType="TimeYears"/>
+      <Level name="Month" column="bulan" uniqueMembers="false" type="Numeric"
+          levelType="TimeMonths"/>
+      <Level name="Date" column="tanggal" uniqueMembers="false" type="Numeric"
+          levelType="TimeDays"/>
+    </Hierarchy>
+   
+  </Dimension>
+
+  <Dimension name="store" foreignKey = "storeID">
+    <Hierarchy hasAll="true" allMemberName="All stores" primaryKey ="storeID">
+      <Table name="store" />
+      <Level name="store_name" column="store_name"/>
+      <Level name="city" column="city" />
+      <Level name="demograpish" column="demograpish" />
+    </Hierarchy>
+  </Dimension>
+
+  <Dimension name="contact" foreignKey="contactID">
+    
+    <Hierarchy  hasAll  ="true" allMemberName="All contacts" primaryKey  = "contactID">
+        <Table name="contact"/>
+        <Level name="nama" column="nama"/>
+        <Level name="email" column="email"/>
+        <Level name="phone" column="phone"/>
+    </Hierarchy>
+  </Dimension>
+    
+  
+
+  <Measure name="orderQTY" column="orderQTY" aggregator="sum"
+      formatString="Standard"/>
+  <Measure name="sub_total" column="sub_total" aggregator="sum"
+      formatString="Standard"/>
+   
+</Cube>
+</Schema>
