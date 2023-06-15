@@ -1,0 +1,18 @@
+Kelompok 5: 
+- Vioneta Zarasofi Permatasari (21082010010)
+- Shinta Amalia Azhara (21082010020)
+- Nur Dinanita (21082010025)
+- Nur Dinianti(21082010026)
+
+Langkah-langkah yang dibutuhkan untuk menjalankan app dengan baik :
+
+1. Install database server: MySql (disini kami menggunakan Xampp versi terbaru).
+2. Install software mysql management: phpMyAdmin dari Xampp (ATAU YG LAIN).
+3. Extract Final-Project-DWO-Kelompok-5.zip pada folder htdocs XAMPP (xampp/htdocs).
+3. Jalankan Xampp control panel.
+4. Start apache dan mysql server.
+5. Buka phpMyAdmin (localhost/phpmyadmin).
+6. Buat database dengan nama uasdwaw.
+7. Import file uasdwaw.sql ke dalam database uasdwaw.
+8. Download dan Extract mondrian.rar dari link https://drive.google.com/file/d/1zQWw5phtMz5Ym6EPQzQrbCSFHTRgI9ut/view?usp=sharing ke dalam server Tomcat bawaan dari XAMPP (xampp/tomcat/webapps).
+9. Jalankan aplikasi dengan mengakses http://localhost/final_dwo/
